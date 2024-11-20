@@ -1,0 +1,34 @@
+# import sqlite3
+# import json
+from lib.logged_in import logged_in
+# from lib.version import version
+# from random import choice
+from flask import (
+    Blueprint,
+    render_template,
+    # abort,
+    # session,
+    # redirect,
+    # request,
+    # url_for,
+    send_from_directory,
+)
+import os
+
+
+site = Blueprint("music", __name__, template_folder="site")
+current_game = None
+
+@logged_in
+@site.route("/static/music/<path:path>")
+def get_file(path):
+    print(f"{path}")
+    return send_from_directory("static/music", path, mimetype="audio/mpeg")
+
+
+@logged_in
+@site.route("/music")
+def music():
+    songs: list = [file.split("/")[-1] for file in os.listdir("static/music/")]
+
+    return render_template("pages/music.html", songs=songs)

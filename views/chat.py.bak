@@ -1,0 +1,60 @@
+from flask import Blueprint, render_template, session, send_from_directory
+from lib.logged_in import logged_in
+from flask_socketio import emit, join_room, leave_room
+from settings import *
+from lib.version import version
+
+site = Blueprint("chat", __name__, template_folder="site")
+
+
+# @socketio.on("joined", namespace="/chat")
+# def joined(message):
+#     """Sent by clients when they enter a room.
+#     A status message is broadcast to all people in the room."""
+#     room = session.get("room")
+#     join_room(room)
+#     print("JOINED")
+#     emit("status", {"msg": session.get("user") + " has entered the room."}, room=room)
+
+
+# @socketio.on("text", namespace="/chat")
+# def text(message):
+#     """Sent by a client when the user entered a new message.
+#     The message is sent to all people in the room."""
+#     room = session.get("room")
+#     print("TEXT")
+#     emit("message", {"msg": session.get("user") + ":" + message["msg"]}, room=room)
+
+
+# @socketio.on("left", namespace="/chat")
+# def left(message):
+#     """Sent by clients when they leave a room.
+#     A status message is broadcast to all people in the room."""
+#     room = session.get("room")
+#     leave_room(room)
+#     print("LEFT")
+#     emit("status", {"msg": session.get("user") + " has left the room."}, room=room)
+
+
+@logged_in()
+@site.route("/chat")
+def chat():
+    return render_template(
+        "pages/chat.html",
+        username=session["user"]["name"],
+        room="main",
+        name=session["user"],
+        version=version,
+    )
+
+
+# @logged_in()
+# @site.route("/static/js/chat/chat.js")
+# def serve_js():
+#     """Ensure that the user is logged in before viewing the js."""
+#     return send_from_directory("static", "js/chat/chat.js")
+
+
+# @socketio.on("text")
+# def message_handler(message):
+#     print(f"Message: {message}")

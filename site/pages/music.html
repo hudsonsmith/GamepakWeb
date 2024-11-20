@@ -1,0 +1,30 @@
+{% extends "templates/app-page.html" %} {% block title %}Games{% endblock %} {% block content %}
+
+<script src="/static/js/visualMusic.js"></script>
+
+<div class="Box m-6">
+  <div class="Box-header">
+    Visualizer
+  </div>
+  <div class="markdown-body m-6">
+  </div>
+
+  <canvas id="canvas" width="100%" height="100%"></canvas>
+</div>
+
+<div class="Box m-6">
+  <div class="Box-header">
+    Songs
+  </div>
+  <ul>
+    {% for song in songs %}
+        <li class="Box-row">
+          <audio controls id="audio">
+            <source src={{ url_for("static", filename="music/"+song) }} type="audio/mpeg">
+          </audio>
+          <p>{{ url_for("static", filename="music/"+song) }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "templates/base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<link type="text/css" rel="stylesheet" href="static/css/login.css"/>
+
+<div class="left-part">
+  <div class="vertical-center">
+    <img class="logo" src="/static/img/logo.png">
+    <h1 class="title"><b><i>GamePak</i></b></h1>
+    <p class="description">High quality web games since 2023</p>
+  </div>
+</div>
+<div class="right-part">
+  <img class="background-image" src="/static/img/train.jpg">
+
+  <form action="#" method="post">
+    <div class="form-content vertical-center">
+      <h1 class="form-title">Log in</h1>
+
+      <p>Username</p>
+      <input class="form-control" name="username" type="text" placeholder="" aria-label="Username" />
+
+      <p>Password</p>
+      <input class="form-control" name="password" type="password" placeholder="" aria-label="Password" />
+
+      <button class="btn" type="submit"><span class="form-submit-text">Submit</span></button>
+
+    </div>
+  </form>
+  <!-- <h1>Hello</h1> -->
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "templates/app-page.html" %} {% block title %}Games{% endblock %} {%
+block content %}
+<script
+  type="text/javascript"
+  src="https://cdn.scaledrone.com/scaledrone.min.js"
+></script>
+<link rel="stylesheet" href="/static/css/chat.css" />
+
+<div class="members-count">-</div>
+<div class="members-list">-</div>
+<div class="messages"></div>
+<form class="message-form" onsubmit="return false;">
+  <input
+    class="input-box form-control border-gradient border-gradient-purple"
+    placeholder="Type a message.."
+    type="text"
+  />
+</form>
+
+<script src="/static/js/chat.js"></script>
+
+{% endblock %}

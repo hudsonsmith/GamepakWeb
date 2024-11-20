@@ -1,0 +1,39 @@
+.header {
+	background-color: #fff;
+	color: #000;
+}
+
+.header p {
+	color: #000;
+}
+
+.version-number {
+	background-color: #2da44e;
+	color: #fff;
+}
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 5vw;
+  color: #fff;
+}
+
+.SideNav-item {
+	text-align: center;
+}
+
+.navbar-icon {
+	height: 4vh;
+	width: 4vh;
+}
+
+.content {
+	margin-left: 5vw;
+}
+
+.logo {
+    width: 100%;
+}

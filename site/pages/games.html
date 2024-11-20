@@ -1,0 +1,29 @@
+{% extends "templates/app-page.html" %} {% block title %}Games{% endblock %} {% block content %}
+
+<div class="Box m-6">
+  <div class="Box-header">
+    Latest News
+  </div>
+  <div class="markdown-body m-6">
+    <h1>Funny Shooter is here! - Fri, Jan 20</h1>
+    <p>We now have a working copy of Funny Shooter ready to play.</p>
+    <p><b>Please note that game will crash upon completion of a level, so you will need to reload the page.</b></p>
+    <a href="static/games/funny_shooter/index.html">Click to play!</a>
+  </div>
+
+</div>
+
+<div class="Box m-6">
+  <div class="Box-header">
+    Game List - <span class="IssueLabel color-bg-success-emphasis color-fg-on-emphasis mr-1">Plays</span>
+  </div>
+  <ul>
+    {% for set in game_dirs %}
+        <li class="Box-row">
+          <a href={{ url_for("static", filename="games/"+set[0]+"/index.html") }}>{{ set[0] }}</a>
+          <span class="IssueLabel color-bg-success-emphasis color-fg-on-emphasis mr-1">{{ set[1] }}</span>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

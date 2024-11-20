@@ -1,0 +1,14 @@
+{% extends "templates/app-page.html" %} {% block title %}Games{% endblock %} {% block content %}
+
+<div class="Box m-6">
+  <div class="Box-header">
+    Page Not Found
+  </div>
+  <div class="markdown-body m-6">
+    <h1>Page not found</h1>
+
+    <h3>Go back to the <a href="{{ url_for('games.games') }}">home page</a></h3>
+    
+  </div>
+
+{% endblock %}

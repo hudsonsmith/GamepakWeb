@@ -1,0 +1,52 @@
+import json
+from random import choice
+import flask
+from flask import session, redirect, url_for, render_template, request, Blueprint
+
+
+site = Blueprint("signup", __name__)
+
+
+@site.route("/signup", methods=["POST", "GET"])
+def signup():
+    if session.get("user"):
+        return redirect("dashboard")
+
+    if request.method == "POST":
+        # Get the username.
+        user = request.form["username"]
+        password = request.form["password"]
+
+        # Make sure the username is not empty.
+        if user == "" or password == "":
+            return redirect("signup")
+
+        with open("data.json", "r") as f:
+            data = json.load(f)
+
+        # If the username and password is not in the data.json, go to the dashboard.
+        print(data.get(user))
+        if not data["users"].get(user):
+
+            # Save the data to the json file.
+            data["users"][user] = password
+
+            with open("data.json", "w") as f:
+                json.dump(data, f, indent=2)
+
+            # Set the session to last.
+            session.permanent = True
+            session["user"] = {"name": user}
+
+            return redirect(
+                url_for(
+                    "dashboard",
+                )
+            )
+
+        return redirect("signup")
+
+    else:
+        return render_template(
+            "pages/signup.html", background="/static/img/login_background.png"
+        )
